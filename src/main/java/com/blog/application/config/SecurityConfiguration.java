@@ -50,9 +50,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/filterByTag",
                         "/filterByAuthor",
                         "/page/{pageNo}").permitAll()
-                .antMatchers("/showNewPostForm",
+                .antMatchers(
                         "/deleteComment/{id}",
-                        "/saveComment/{id}",
+                        "/saveComment/{id}").hasAnyAuthority("USER", "ADMIN", "AUTHOR")
+                .antMatchers(
+                        "/showNewPostForm",
                         "/savePost",
                         "/showFormForUpdate/{id}",
                         "/deletePost/{id}",
